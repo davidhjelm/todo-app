@@ -18,6 +18,7 @@ export default {
   methods: {
     ...mapActions(['addTodo']),
     AddTodo: function () {
+      if (this.newTodo.length === 0) return
       this.addTodo(this.newTodo)
       this.newTodo = ''
     }
