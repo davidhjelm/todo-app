@@ -1,17 +1,5 @@
 const state = {
-  todos: [{
-    text: 'do this',
-    done: false,
-    dateAdded: 'today'
-  }, {
-    text: 'do that',
-    done: true,
-    dateAdded: 'yesterday'
-  }, {
-    text: 'third todo',
-    done: false,
-    dateAdded: '2019-01-10'
-  }]
+  todos: []
 }
 
 const getters = {
@@ -19,11 +7,13 @@ const getters = {
 }
 
 const mutations = {
-
+  pushTodo: (state, newTodo) => state.todos.unshift(newTodo)
 }
 
 const actions = {
-
+  addTodo: (context, newTodo) => {
+    context.commit('pushTodo', newTodo)
+  }
 }
 
 export default {
