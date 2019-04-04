@@ -3,17 +3,23 @@
     <div class="todo" v-for="todo in allTodos" :key="todo.id" >
       <div class="todoText"> {{todo.text}} </div>
       <div class="added">Added: {{todo.dateAdded}} </div>
-      <div class="done">X</div>
+      <div class="done" @click="DeleteTodo(todo.id)">X</div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'TodoList',
   computed: mapGetters(['allTodos']),
+  methods: {
+    ...mapActions(['deleteTodo']),
+    DeleteTodo: function (id) {
+      this.deleteTodo(id)
+    }
+  },
   data () {
     return {
       showDone: false

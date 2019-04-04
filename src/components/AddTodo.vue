@@ -18,17 +18,9 @@ export default {
   methods: {
     ...mapActions(['addTodo']),
     AddTodo: function () {
-      const dateNow = () => {
-        const newDate = Date()
-        return newDate.toLocaleString(Date.now())
-      }
-      this.addTodo({ text: this.newTodo, done: false, dateAdded: dateNow() })
+      this.addTodo(this.newTodo)
       this.newTodo = ''
     }
-    // addTodo: function () {
-    // this.todos.unshift({ text: this.newTodo, done: false, dateAdded: 'today' })
-    // this.newTodo = ''
-    // }
   }
 }
 </script>
