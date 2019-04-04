@@ -28,7 +28,6 @@ const actions = {
     context.commit('pushTodo', newTodo)
   },
   deleteTodo: (context, todoId) => {
-    console.log(`deleting ${todoId}`)
     context.commit('popTodo', todoId)
   }
 }
