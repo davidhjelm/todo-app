@@ -1,17 +1,27 @@
 <template>
-  <div class="home">
-    <Todo/>
+  <div class="container">
+    <AddTodo/>
+    <TodoList/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Todo from '@/components/Todo.vue'
+import TodoList from '@/components/TodoList.vue'
+import AddTodo from '@/components/AddTodo.vue'
 
 export default {
   name: 'home',
   components: {
-    Todo
+    TodoList,
+    AddTodo
   }
 }
 </script>
+
+<style>
+.container {
+  margin: auto;
+  width: 50%;
+}
+</style>
