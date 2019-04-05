@@ -10,6 +10,10 @@ const mutations = {
   pushTodo: (state, newTodo) => state.todos.unshift(newTodo),
   popTodo: (state, todoId) => {
     state.todos = state.todos.filter(t => (t.id !== todoId))
+  },
+  flipDone: (state, todoId) => {
+    const isDone = state.todos.find(t => t.id === todoId).done
+    state.todos.find(t => t.id === todoId).done = !isDone
   }
 }
 
@@ -29,6 +33,9 @@ const actions = {
   },
   deleteTodo: (context, todoId) => {
     context.commit('popTodo', todoId)
+  },
+  toggleDone: (context, todoId) => {
+    context.commit('flipDone', todoId)
   }
 }
 

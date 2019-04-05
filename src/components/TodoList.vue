@@ -1,9 +1,14 @@
 <template>
   <div class="todolist">
-    <div class="todo" v-for="todo in allTodos" :key="todo.id" >
+    <div class="showDoneToggle">
+      <font-awesome-icon :icon="checkIcon[showDone]" @click="ToggleShowDone()"/>
+      <div id="showDone">Show Done</div>
+    </div>
+    <div class="todo" v-for="todo in allTodos" :key="todo.id">
       <div class="todoText"> {{todo.text}} </div>
       <div class="added">Added: {{todo.dateAdded}} </div>
-      <div class="done" @click="DeleteTodo(todo.id)">X</div>
+      <font-awesome-icon class="delete" @click="DeleteTodo(todo.id)" icon="trash" />
+      <font-awesome-icon id="taskDoneToggle" :icon="checkIcon[todo.done]" @click="toggleDone(todo.id)" />
     </div>
   </div>
 </template>
@@ -15,14 +20,21 @@ export default {
   name: 'TodoList',
   computed: mapGetters(['allTodos']),
   methods: {
-    ...mapActions(['deleteTodo']),
+    ...mapActions(['deleteTodo', 'toggleDone']),
     DeleteTodo: function (id) {
       this.deleteTodo(id)
+    },
+    ToggleShowDone: function () {
+      this.showDone = !this.showDone
     }
   },
   data () {
     return {
-      showDone: false
+      showDone: false,
+      checkIcon: {
+        true: ['far', 'check-square'],
+        false: ['far', 'square']
+      }
     }
   }
 }
@@ -37,14 +49,31 @@ export default {
     padding: 10px;
     margin: 10px;
   }
-  .done {
+  .delete {
     position: absolute;
     right: 10px;
     top: 5px;
   }
+  .todoText {
+    padding-left: 1.5rem;
+  }
   .added {
     padding-top: 5px;
+    padding-left: 1.5rem;
     font-style: italic;
     font-size: smaller;
+  }
+  .showDoneToggle {
+    position: relative;
+    margin-top: 0.5em;
+  }
+  #showDone {
+    position: absolute;
+    left: 1em;
+    top: 0em;
+  }
+  #taskDoneToggle{
+    position: absolute;
+    top: 1.5rem;
   }
 </style>
