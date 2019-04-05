@@ -1,7 +1,10 @@
 <template>
   <div class="AddTodo">
-    <input v-model="newTodo" placeholder="New todo" @keyup.enter="AddTodo"/>
-    <button @click="AddTodo">Add</button>
+    <div class="form">
+      <label for="newTodo">Add a new todo item</label>
+        <input v-model="newTodo" id="newTodo" placeholder="New todo" @keyup.enter="AddTodo"/>
+      <button id="todoButton" @click="AddTodo">Add</button>
+    </div>
   </div>
 </template>
 
@@ -30,5 +33,25 @@ export default {
   .AddTodo {
     width: 50%;
     margin: auto;
+  }
+  .form {
+    padding-top: 1.5em;
+    position: relative;
+  }
+  label {
+    position: absolute;
+    top: 0px;
+  }
+  #newTodo {
+    border: 2px solid #006080;
+    border-radius: 5%;
+  }
+  #todoButton {
+    background: #007a80;
+    border: 0;
+    color: whitesmoke;
+    margin-left: 1em;
+    padding: 0.3em;
+    width: 5em;
   }
 </style>
