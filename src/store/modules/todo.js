@@ -1,3 +1,7 @@
+let maxId = 0
+
+const incMaxId = () => maxId++
+
 const state = {
   todos: [],
   showDone: true
@@ -32,7 +36,7 @@ const actions = {
       text: todoString,
       done: false,
       dateAdded: dateNow(),
-      id: Math.floor(Math.random() * 100000)
+      id: incMaxId()
     }
     context.commit('pushTodo', newTodo)
   },
