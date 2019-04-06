@@ -49,6 +49,7 @@ export default {
     position: absolute;
     right: 10px;
     top: 5px;
+    cursor: pointer;
   }
   .todoText {
     padding-left: 1.5rem;
@@ -71,5 +72,6 @@ export default {
   #taskDoneToggle{
     position: absolute;
     top: 1.5rem;
+    cursor: pointer;
   }
 </style>
