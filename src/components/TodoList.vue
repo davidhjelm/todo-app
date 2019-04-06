@@ -1,7 +1,7 @@
 <template>
   <div class="todolist">
-    <div class="showDoneToggle">
-      <font-awesome-icon :icon="checkIcon[showDone]" @click="ToggleShowDone()"/>
+    <div class="showDoneToggle" @click="showDone()">
+      <font-awesome-icon :icon="checkIcon[getShowDone]" />
       <div id="showDone">Show Done</div>
     </div>
     <div class="todo" v-for="todo in allTodos" :key="todo.id">
@@ -18,19 +18,15 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'TodoList',
-  computed: mapGetters(['allTodos']),
+  computed: mapGetters(['allTodos', 'getShowDone']),
   methods: {
-    ...mapActions(['deleteTodo', 'toggleDone']),
+    ...mapActions(['deleteTodo', 'toggleDone', 'showDone']),
     DeleteTodo: function (id) {
       this.deleteTodo(id)
-    },
-    ToggleShowDone: function () {
-      this.showDone = !this.showDone
     }
   },
   data () {
     return {
-      showDone: false,
       checkIcon: {
         true: ['far', 'check-square'],
         false: ['far', 'square']

@@ -1,9 +1,11 @@
 const state = {
-  todos: []
+  todos: [],
+  showDone: true
 }
 
 const getters = {
-  allTodos: state => state.todos
+  allTodos: state => !state.showDone ? state.todos.filter(t => t.done === false) : state.todos,
+  getShowDone: state => state.showDone
 }
 
 const mutations = {
@@ -14,6 +16,9 @@ const mutations = {
   flipDone: (state, todoId) => {
     const isDone = state.todos.find(t => t.id === todoId).done
     state.todos.find(t => t.id === todoId).done = !isDone
+  },
+  showDone: (state, showDone) => {
+    state.showDone = !state.showDone
   }
 }
 
@@ -36,6 +41,9 @@ const actions = {
   },
   toggleDone: (context, todoId) => {
     context.commit('flipDone', todoId)
+  },
+  showDone: (context, showDone) => {
+    context.commit('showDone', showDone)
   }
 }
 
