@@ -47,9 +47,6 @@ export default {
     border-radius: 5%;
   }
   #todoButton {
-    background: #007a80;
-    border: 0;
-    color: whitesmoke;
     margin-left: 1em;
     padding: 0.3em;
     width: 5em;

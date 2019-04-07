@@ -1,13 +1,14 @@
 <template>
   <div class="todolist">
-    <div class="showDoneToggle" @click="showDone()">
-      <font-awesome-icon :icon="checkIcon[getShowDone]" />
-      <div id="showDone">Show Done</div>
+    <div class="showDoneToggle">
+      <font-awesome-icon :icon="checkIcon[getShowDone]" @click="showDone()"/>
+      <div id="showDone" @click="showDone()" >Show Done</div>
+      <button id="clearLocalStorage" @click="clearAll()">Clear All</button>
     </div>
     <div class="todo" v-for="todo in allTodos" :key="todo.id">
       <div class="todoText"> {{todo.text}} </div>
       <div class="added">Added: {{todo.dateAdded}} </div>
-      <font-awesome-icon class="delete" @click="DeleteTodo(todo.id)" icon="trash" />
+      <font-awesome-icon class="delete" @click="deleteTodo(todo.id)" icon="trash" />
       <font-awesome-icon id="taskDoneToggle" :icon="checkIcon[todo.done]" @click="toggleDone(todo.id)" />
     </div>
   </div>
@@ -21,8 +22,8 @@ export default {
   computed: mapGetters(['allTodos', 'getShowDone']),
   methods: {
     ...mapActions(['deleteTodo', 'toggleDone', 'showDone']),
-    DeleteTodo: function (id) {
-      this.deleteTodo(id)
+    clearAll () {
+      localStorage.clear() // TODO: Requires doing a full reload after hitting the button
     }
   },
   data () {
@@ -73,5 +74,9 @@ export default {
     position: absolute;
     top: 1.5rem;
     cursor: pointer;
+  }
+  #clearLocalStorage {
+    position: absolute;
+    right: 1em;
   }
 </style>

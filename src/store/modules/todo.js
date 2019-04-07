@@ -1,10 +1,7 @@
-let maxId = 0
-
-const incMaxId = () => maxId++
-
 const state = {
   todos: [],
-  showDone: true
+  showDone: true,
+  maxId: 0
 }
 
 const getters = {
@@ -23,22 +20,24 @@ const mutations = {
   },
   showDone: (state, showDone) => {
     state.showDone = !state.showDone
-  }
+  },
+  incMaxId: (state) => state.maxId++
 }
 
 const actions = {
-  addTodo: (context, todoString) => {
+  addTodo: ({ commit, state }, todoString) => {
     const dateNow = () => {
       const newDate = Date()
       return newDate.toLocaleString(Date.now())
     }
+    commit('incMaxId')
     const newTodo = {
       text: todoString,
       done: false,
       dateAdded: dateNow(),
-      id: incMaxId()
+      id: state.maxId
     }
-    context.commit('pushTodo', newTodo)
+    commit('pushTodo', newTodo)
   },
   deleteTodo: (context, todoId) => {
     context.commit('popTodo', todoId)
